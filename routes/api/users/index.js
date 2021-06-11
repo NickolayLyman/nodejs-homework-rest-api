@@ -12,11 +12,15 @@ const {
   getCurrent,
   updateSubscription,
   avatar,
+  verify,
+  repeatSendEmailVerify,
 } = require('../../../controllers/userController')
 const upload = require('../../../helpers/uploadAvatar')
 
 const guard = require('../../../helpers/guard')
 
+router.get('/verify/:token', verify)
+router.post('/verify', repeatSendEmailVerify)
 router.patch('/', guard, validateUpdatingUserSubscription, updateSubscription)
 router.post('/register', validateUserRegistration, registration)
 router.post('/login', validateUserLoggingIn, logIn)
